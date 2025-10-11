@@ -1,2 +1,2 @@
-export declare const saludo = "hola";
+export * from './entities/index.js';
 //# sourceMappingURL=index.d.ts.map

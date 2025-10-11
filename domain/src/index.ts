@@ -1,1 +1,1 @@
-export const saludo ="hola"
+export * from './entities/index.js';
