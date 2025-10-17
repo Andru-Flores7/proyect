@@ -51,12 +51,12 @@ export class User implements IUser {
       throw new Error("El usuario debe tener nombre");
     }
 
-    if (isValidEmail(this.email)) {
+    if (!isValidEmail(this.email)) {
       throw new Error("El usuario debe tener un email válido");
     }
 
     if (!isValidPassword(this.password)) {
-      throw new Error("La contraseña debe tener almenos 6 caracteres");
+      throw new Error("La contraseña debe tener al menos 6 caracteres");
     }
       if (!this.isValidRole(this.role)) {
         throw new Error("Rol de usuario inválido");
