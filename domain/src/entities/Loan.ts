@@ -1,8 +1,7 @@
+import type { Entity } from "../utils/types/entity.js";
 
 
-
-export interface Loan {
-    id : string;
+export interface Loan extends Entity {
     userId : string;
     bookId : string;
     loanDate : Date;

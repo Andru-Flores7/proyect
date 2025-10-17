@@ -1,3 +1,2 @@
-import {saludo} from "../../../domain/dist/index.js";
+import { Book ,User ,Loan } from "../../../domain/dist/index.js";
 
-console.log(saludo);
