@@ -1,58 +1,84 @@
+import { Entity } from "../utils/types/entity.js";
 
-export interface IBook {
-  id: string;        
-  title: string;      
-  author: string;    
+export interface IBook extends Entity {
+  title: string;
+  author: string;
+  categoryId: string ;
   available: boolean;
 }
 
 export class Book implements IBook {
-  
-     id: string;
-     title: string;
-     author: string;
-     available: boolean ;
+  id: string;
+  title: string;
+  author: string;
+  categoryId: string;
+  available: boolean;
+  createdAt: Date;
+  updatedAt?: Date;
 
-     constructor ( id:string , title:string, author:string){
-     this.id = id;
+  constructor(
+    id: string,
+    title: string,
+    author: string,
+    categoryId: string,
+    available: boolean = true,
+    createdAt?: Date,
+    updatedAt?: Date
+  ) {
+    this.id = id;
     this.title = title;
     this.author = author;
-    this.available = true; 
+    this.categoryId = categoryId;
+    this.available = available;
+    this.createdAt = createdAt ?? new Date();
+    this.updatedAt = updatedAt;
 
-// Un libro debe tener título
-    if (!title.trim()) {
-      throw new Error('Un libro debe tener título');
-    }
- // Un libro debe tener autor
-    if (!author.trim()) {
-      throw new Error('Un libro debe tener autor');
-    }
-
-
+    this.validate();
   }
-    
-      //un libro puede ser prestado
+
+
+
+  private validate(): void {
+
+     if (!this.id?.trim()) {
+      throw new Error("Un libro debe tener un ID");
+    }
+
+    if (!this.title || !this.title.trim()) {
+      throw new Error("Un libro debe tener título");
+    }
+
+    if (!this.author || !this.author.trim()) {
+      throw new Error("Un libro debe tener autor");
+    }
+ 
+    if (!this.categoryId?.trim()) {
+      throw new Error("Un libro debe tener categoria");
+    }
+
+
+  
+  
+  }
+
+  // Un libro puede ser prestado
   borrow(): void {
     if (!this.available) {
-    throw new Error ("No se puede prestar un libro que no esta disponible") ;
-  }
-   this.available = false ;
-
-  }
-      //un libro puede ser devuelto
-  return(): void {
-    if (this.available) {
-      throw new Error ("No se puede devolver un libro que no esta prestado") ;
+      throw new Error("No se puede prestar un libro que no está disponible");
     }
-    this.available = true ;
+    this.available = false;
+    this.updatedAt = new Date();
+  }
+
+
+  // Un libro puede ser devuelto
+
+
+  returnBook(): void {
+    if (this.available) {
+      throw new Error("No se puede devolver un libro que ya está disponible");
+    }
+    this.available = true;
+    this.updatedAt = new Date();
   }
 }
-  
-
-     
-  
-   
-
-
-
-
