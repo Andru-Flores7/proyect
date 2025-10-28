@@ -7,11 +7,9 @@ export function LoanMok (opts?: Partial<Loan>):Loan {
     userId : crypto.randomUUID(),
     bookId : crypto.randomUUID(),
     loanDate : faker.date.past(),
-    returnDate : new Date(),
-    createdAt : new Date(),
-    updatedAt : new Date(),
+    returnDate : null,
+   
+   
     ...opts
   }
 }
-console.log(LoanMok()
-)

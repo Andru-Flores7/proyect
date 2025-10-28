@@ -1,4 +1,4 @@
-import {UserRole  ,type User } from "../User"
+import {UserRole  ,type User } from "../User.js"
 import {faker} from "@faker-js/faker"
 
 export function UserMok (opts?: Partial<User>):User {
